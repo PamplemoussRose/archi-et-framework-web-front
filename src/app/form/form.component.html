@@ -1,0 +1,22 @@
+<section>
+  <h2>Informations du Terrain</h2>
+  <form class="form-container">
+    <label>
+      Nom :
+      <textarea [(ngModel)]="nom" name="nom"></textarea>
+    </label>
+    <label>
+      Quantité :
+      <textarea [(ngModel)]="quantite" name="quantite"></textarea>
+    </label>
+    <label>
+      Description :
+      <textarea [(ngModel)]="description" name="description"></textarea>
+    </label>
+    <label>
+      Point géographique :
+      <textarea [(ngModel)]="point_geo" name="point_geo"></textarea>
+    </label>
+    <button type="button" (click)="goBack()">Retour</button>
+  </form>
+</section>

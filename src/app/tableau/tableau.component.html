@@ -1,0 +1,21 @@
+<div>
+  <h2>Liste des Terrains</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Quantité</th>
+        <th>Description</th>
+        <th>Position</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let terrain of terrains" (click)="goToForm(terrain.nom, terrain.quantite, terrain.description, terrain.point_geo)">
+        <td>{{ terrain.nom }}</td>
+        <td>{{ terrain.quantite }}</td>
+        <td>{{ terrain.description }}</td>
+        <td>{{ terrain.point_geo }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
