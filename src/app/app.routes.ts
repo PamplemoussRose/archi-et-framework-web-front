@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import {TableauComponent} from './tableau/tableau.component';
-import {FormComponent} from './form/form.component';
+import {TableauDatasourceComponent} from './tableau-datasource/tableau-datasource.component';
+import {EditTerrainComponent} from './edit-terrain/edit-terrain.component';
 
 export const routes: Routes = [
-  { path: '', component: TableauComponent },
-  { path: 'form/:nom/:quantite/:description/:point_geo', component: FormComponent },
+  { path: '', component: TableauDatasourceComponent },
+  { path: 'edit/:id', component: EditTerrainComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

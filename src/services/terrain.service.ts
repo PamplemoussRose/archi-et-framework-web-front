@@ -62,8 +62,8 @@ export class TerrainService {
    * @param terrain Instance de `TerrainModel` contenant l'ID du terrain à récupérer.
    * @returns Observable contenant l'objet `TerrainModel` correspondant à l'ID.
    */
-  getById(terrain: TerrainModel): Observable<TerrainModel> {
-    return this.http.get<TerrainModel>(`${this.API_URL}/${this.API_ENTITY_NAME}/${terrain.id}`);
+  getById(id: number): Observable<TerrainModel> {
+    return this.http.get<TerrainModel>(`${this.API_URL}/${this.API_ENTITY_NAME}/${id}`);
   }
 
   /**
@@ -86,7 +86,7 @@ export class TerrainService {
    * @param terrain Instance de `TerrainModel` contenant l'ID du terrain à supprimer.
    * @returns Observable contenant l'objet `TerrainModel` supprimé.
    */
-  delete(terrain: TerrainModel): Observable<TerrainModel> {
-    return this.http.delete<TerrainModel>(`${this.API_URL}/${this.API_ENTITY_NAME}/${terrain.id}`);
+  delete(id: number): Observable<TerrainModel> {
+    return this.http.delete<TerrainModel>(`${this.API_URL}/${this.API_ENTITY_NAME}/${id}`);
   }
 }
