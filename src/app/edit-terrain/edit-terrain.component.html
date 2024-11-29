@@ -1,26 +1,43 @@
 <section>
+
   <form  (ngSubmit)="goBack()">
     <button type="submit" class="retour">Retour</button>
   </form>
+
   <h1>Modifier le terrain</h1>
+
   <form (ngSubmit)="saveChanges()" class="form-container">
+
     <div class="container">
       <label for="nom">Nom:</label>
       <input id="nom" [(ngModel)]="terrain.nom" name="nom" />
     </div>
+
     <div class="container">
       <label for="quant">Quantité:</label>
       <input id="quant" [(ngModel)]="terrain.quantite" name="quant" />
     </div>
+
     <div class="container">
       <label for="desc">Description:</label>
       <textarea id="desc" [(ngModel)]="terrain.description" name="desc"></textarea>
     </div>
+
     <div class="container">
       <label for="geo">Position:</label>
       <input id="geo" [(ngModel)]="terrain.point_geo" name="geo"/>
     </div>
 
-    <button type="submit" class="save">Enregistrer</button>
+    <div class="basPage">
+
+      <button type="submit" class="save">Enregistrer</button>
+
+      <form (ngSubmit)="deleteTerrain()" class="form-delete">
+        <button type="submit" class="delete">Supprimer</button>
+      </form>
+
+    </div>
+
   </form>
+
 </section>

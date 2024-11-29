@@ -38,9 +38,15 @@ export class EditTerrainComponent implements OnInit {
   }
 
   saveChanges(): void {
-
     this.terrainService.update(this.terrain).subscribe(() => {
-      alert('Modifications sauvegardées avec succès!');
+      alert('Modifications sauvegardées');
+    });
+    this.goBack();
+  }
+
+  deleteTerrain(): void {
+    this.terrainService.delete(this.terrain.id).subscribe(() => {
+      alert('Terrain supprimé');
     });
     this.goBack();
   }

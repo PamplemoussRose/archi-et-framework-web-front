@@ -4,11 +4,17 @@ import {TerrainModel} from '../../models/terrain.model';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {TerrainService} from '../../services/terrain.service';
 import {Router} from '@angular/router';
+import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-tableau-datasource',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule],
+  imports: [
+    MatTableModule,
+    MatPaginatorModule,
+    FormsModule,
+    CommonModule],
   templateUrl: './tableau-datasource.component.html',
   styleUrl: './tableau-datasource.component.css'
 })
@@ -25,20 +31,17 @@ export class TableauDatasourceComponent {
   ngOnInit(): void{
     this.terainService.get().subscribe(value => {
         this.dataSource = new MatTableDataSource<TerrainModel>(value);
-        //this.dataSource.paginator = this.paginator;
+        this.dataSource.paginator = this.paginator;
       }
     )
   }
 
-  ngAfterViewInit(): void {
-    // Connect the paginator after the view initializes
-    if (this.dataSource) {
-      this.dataSource.paginator = this.paginator;
-    }
-  }
-
   onRowClicked(row: TerrainModel): void {
     this.router.navigate(['/edit', row.id]);
+  }
+
+  addTerrain(): void {
+    this.router.navigate(['/add']);
   }
 }
 
