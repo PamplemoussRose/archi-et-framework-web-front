@@ -1,0 +1,62 @@
+section {
+  border: 1px solid black;
+  margin-top: 15px;
+}
+
+h1{
+  margin-left: 10px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+textarea {
+  align-self: center;
+  resize: none;
+  width: 99%;
+  height: 50px;
+}
+input{
+  resize: none;
+  width: 99%;
+}
+
+.basPage{
+  width: 100%;
+  display: flex;           /* Utilise un conteneur flex */
+  justify-content: center;
+}
+
+.save {
+  width: 30%;
+  align-self: center;
+  margin: 5px;
+}
+
+.form-delete{
+  width: 30%;
+}
+.delete{
+  width: 100%;
+  align-self: center;
+  margin: 5px;
+}
+
+.retour{
+  display: flex;
+  margin: 5px;
+}
