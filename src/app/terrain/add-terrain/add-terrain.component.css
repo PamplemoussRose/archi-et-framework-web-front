@@ -30,33 +30,41 @@ textarea {
   width: 99%;
   height: 50px;
 }
+
 input{
   resize: none;
   width: 99%;
-}
-
-.basPage{
-  width: 100%;
-  display: flex;           /* Utilise un conteneur flex */
-  justify-content: center;
 }
 
 .save {
   width: 30%;
   align-self: center;
   margin: 5px;
+  border: 2px solid black;
+  padding: 10px 20px;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
 }
 
-.form-delete{
-  width: 30%;
-}
-.delete{
-  width: 100%;
-  align-self: center;
-  margin: 5px;
+.save:hover {
+  background: black;
+  color: white;
 }
 
 .retour{
   display: flex;
   margin: 5px;
+  border: 2px solid black;
+  padding: 10px 20px;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.retour:hover {
+  background: black;
+  color: white;
 }

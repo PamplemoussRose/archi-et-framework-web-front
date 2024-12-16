@@ -2,73 +2,80 @@ import { HttpClient } from '@angular/common/http';
 import { ReservationModel } from '../models/reservation.model';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
 
 /**
  * Service Angular pour gérer les opérations CRUD sur les réservations.
- * Chaque méthode de ce service correspond à une opération de contrôleur côté backend.
+ * Chaque méthode correspond à une opération côté backend.
+ *
+ * Ce service est injecté au niveau racine grâce au décorateur `@Injectable`.
  */
-export class TerrainService {
+@Injectable({ providedIn: 'root' })
+export class ReservationService {
 
   /**
    * URL de base de l'API backend.
-   * Utilisée pour construire les chemins d'API pour les opérations CRUD sur les réservations.
+   * Utilisée pour construire les chemins d'accès aux ressources réservation.
    */
-  API_URL: string = "http://localhost:8080/api";
+  private readonly API_URL: string = "http://localhost:8080/api";
 
   /**
-   * Nom de l'entité réservation utilisé dans les routes API.
-   * Cela permet de facilement référencer l'entité réservation dans les requêtes HTTP.
+   * Nom de l'entité réservation utilisée pour les routes API.
+   * Permet de centraliser et simplifier la gestion des chemins.
    */
-  API_ENTITY_NAME: string = "reservation";
+  private readonly API_ENTITY_NAME: string = "reservation";
 
   /**
-   * Constructeur pour initialiser les dépendances du service.
+   * Constructeur pour initialiser les dépendances nécessaires au service.
    *
-   * @param http HttpClient pour effectuer les requêtes HTTP.
-   * @param toastrService ToastrService pour afficher des notifications utilisateur.
+   * @param http Service HttpClient pour effectuer les requêtes HTTP.
+   * @param toastrService Service ToastrService pour afficher des notifications.
    */
-  constructor(private readonly http: HttpClient, private readonly toastrService: ToastrService) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly toastrService: ToastrService
+  ) {}
 
   /**
-   * Crée une nouvelle réservation.
+   * Crée une nouvelle réservation dans le système.
    *
-   * Cette méthode envoie une requête POST à l'API backend pour créer une nouvelle réservation.
+   * Cette méthode effectue une requête POST pour envoyer les données de réservation au backend.
    *
-   * @param reservation Instance de `ReservationModel` représentant la réservation à créer.
-   * @returns Observable contenant l'objet `ReservationModel` créé.
+   * @param reservation Instance de `ReservationModel` contenant les informations de la réservation à créer.
+   * @returns Observable contenant l'objet `ReservationModel` créé par le backend.
    */
   create(reservation: ReservationModel): Observable<ReservationModel> {
     return this.http.post<ReservationModel>(`${this.API_URL}/${this.API_ENTITY_NAME}`, reservation);
   }
 
   /**
-   * Récupère la liste des réservations.
+   * Récupère la liste de toutes les réservations.
    *
-   * Cette méthode envoie une requête GET à l'API backend pour récupérer toutes les réservations.
+   * Cette méthode effectue une requête GET pour récupérer les réservations disponibles.
    *
-   * @param reservation Instance de `ReservationModel` pour effectuer la requête, même si cela n'est pas utilisé dans ce cas.
    * @returns Observable contenant un tableau d'instances `ReservationModel`.
    */
-  get(reservation: ReservationModel): Observable<ReservationModel> {
-    return this.http.get<ReservationModel>(`${this.API_URL}/${this.API_ENTITY_NAME}`);
+  get(): Observable<ReservationModel[]> {
+    return this.http.get<ReservationModel[]>(`${this.API_URL}/${this.API_ENTITY_NAME}`);
   }
 
   /**
    * Récupère une réservation spécifique par l'ID de l'utilisateur et l'ID du terrain.
    *
-   * Cette méthode envoie une requête GET à l'API backend pour récupérer une réservation en fonction des identifiants fournis.
+   * Cette méthode effectue une requête GET en incluant les identifiants dans l'URL.
    *
-   * @param reservation Instance de `ReservationModel` contenant les identifiants de l'utilisateur et du terrain.
+   * @param idUser Identifiant unique de l'utilisateur associé à la réservation.
+   * @param idTerrain Identifiant unique du terrain associé à la réservation.
    * @returns Observable contenant l'objet `ReservationModel` correspondant aux identifiants.
    */
-  getById(reservation: ReservationModel): Observable<ReservationModel> {
-    return this.http.get<ReservationModel>(`${this.API_URL}/${this.API_ENTITY_NAME}/${reservation.idUtilisateur}/${reservation.idTerrain}`);
+  getById(idUser: number, idTerrain: number): Observable<ReservationModel> {
+    return this.http.get<ReservationModel>(`${this.API_URL}/${this.API_ENTITY_NAME}/${idUser}/${idTerrain}`);
   }
 
   /**
-   * Met à jour une réservation existante.
+   * Met à jour une réservation existante dans le système.
    *
-   * Cette méthode envoie une requête PUT à l'API backend pour mettre à jour les informations d'une réservation existante.
+   * Cette méthode effectue une requête PUT pour mettre à jour les informations d'une réservation spécifique.
    *
    * @param reservation Instance de `ReservationModel` contenant les nouvelles données de la réservation.
    * @returns Observable contenant l'objet `ReservationModel` mis à jour.
@@ -78,14 +85,15 @@ export class TerrainService {
   }
 
   /**
-   * Supprime une réservation existante.
+   * Supprime une réservation existante par l'ID de l'utilisateur et l'ID du terrain.
    *
-   * Cette méthode envoie une requête DELETE à l'API backend pour supprimer une réservation en fonction des identifiants de l'utilisateur et du terrain.
+   * Cette méthode effectue une requête DELETE pour retirer une réservation du système.
    *
-   * @param reservation Instance de `ReservationModel` contenant les identifiants de l'utilisateur et du terrain à supprimer.
+   * @param idUser Identifiant unique de l'utilisateur associé à la réservation.
+   * @param idTerrain Identifiant unique du terrain associé à la réservation.
    * @returns Observable contenant l'objet `ReservationModel` supprimé.
    */
-  delete(reservation: ReservationModel): Observable<ReservationModel> {
-    return this.http.delete<ReservationModel>(`${this.API_URL}/${this.API_ENTITY_NAME}/${reservation.idUtilisateur}/${reservation.idTerrain}`);
+  delete(idUser: number, idTerrain: number): Observable<ReservationModel> {
+    return this.http.delete<ReservationModel>(`${this.API_URL}/${this.API_ENTITY_NAME}/${idUser}/${idTerrain}`);
   }
 }

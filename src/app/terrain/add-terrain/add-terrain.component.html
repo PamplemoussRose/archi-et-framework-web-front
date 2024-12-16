@@ -1,10 +1,8 @@
 <section>
 
-  <form  (ngSubmit)="goBack()">
-    <button type="submit" class="retour">Retour</button>
-  </form>
+  <button class="retour" (click)="goBack()">Retour</button>
 
-  <h1>Modifier le terrain</h1>
+  <h1>Modifier un terrain</h1>
 
   <form (ngSubmit)="saveTerrain()" class="form-container">
 
@@ -29,7 +27,6 @@
     </div>
 
       <button type="submit" class="save">Ajouter le terrain</button>
-
 
   </form>
 

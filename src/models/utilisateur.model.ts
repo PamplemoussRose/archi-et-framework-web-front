@@ -22,7 +22,7 @@ export interface UtilisateurModel {
   /**
    * Adresse email de l'utilisateur.
    */
-  email: string;
+  mail: string;
 
   /**
    * Mot de passe de l'utilisateur.

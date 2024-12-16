@@ -1,3 +1,5 @@
+<button class="retour" (click)="goHome()">Home</button>
+
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
 
   <!-- Id Column -->
@@ -37,6 +39,6 @@
 
 <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
 
-<form (ngSubmit)="addTerrain()" class="form-container">
-  <button type="submit" class="bouton">Ajouter un terrain</button>
-</form>
+<div class="container">
+  <button class="bouton" (click)="addTerrain()">Ajouter un terrain</button>
+</div>

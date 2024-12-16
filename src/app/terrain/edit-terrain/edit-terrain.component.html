@@ -1,0 +1,39 @@
+<section>
+
+  <button class="retour" (click)="goBack()">Retour</button>
+
+  <h1>Modifier le terrain</h1>
+
+  <form class="form-container">
+
+    <div class="container">
+      <label for="nom">Nom:</label>
+      <input id="nom" [(ngModel)]="terrain.nom" name="nom" required/>
+    </div>
+
+    <div class="container">
+      <label for="quant">Quantité:</label>
+      <input id="quant" [(ngModel)]="terrain.quantite" name="quant" required/>
+    </div>
+
+    <div class="container">
+      <label for="desc">Description:</label>
+      <textarea id="desc" [(ngModel)]="terrain.description" name="desc" required></textarea>
+    </div>
+
+    <div class="container">
+      <label for="geo">Position:</label>
+      <input id="geo" [(ngModel)]="terrain.point_geo" name="geo" required/>
+    </div>
+
+    <div class="basPage">
+
+      <button class="button" (click)="saveChanges()">Enregistrer</button>
+
+      <button class="button" (click)="deleteTerrain()">Supprimer</button>
+
+    </div>
+
+  </form>
+
+</section>

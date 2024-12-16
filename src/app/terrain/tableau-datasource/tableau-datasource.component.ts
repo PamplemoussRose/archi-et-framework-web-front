@@ -1,11 +1,11 @@
 import {Component, ViewChild} from '@angular/core';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {TerrainModel} from '../../models/terrain.model';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import {TerrainService} from '../../services/terrain.service';
 import {Router} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
+import {TerrainService} from '../../../services/terrain.service';
+import {TerrainModel} from '../../../models/terrain.model';
 
 @Component({
   selector: 'app-tableau-datasource',
@@ -26,10 +26,10 @@ export class TableauDatasourceComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private readonly terainService: TerrainService, private readonly router: Router) {}
+  constructor(private readonly terrainService: TerrainService, private readonly router: Router) {}
 
   ngOnInit(): void{
-    this.terainService.get().subscribe(value => {
+    this.terrainService.get().subscribe(value => {
         this.dataSource = new MatTableDataSource<TerrainModel>(value);
         this.dataSource.paginator = this.paginator;
       }
@@ -42,6 +42,10 @@ export class TableauDatasourceComponent {
 
   addTerrain(): void {
     this.router.navigate(['/add']);
+  }
+
+  goHome(): void {
+    this.router.navigate(['']);
   }
 }
 
