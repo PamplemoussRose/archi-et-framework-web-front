@@ -1,0 +1,63 @@
+section {
+  border: 1px solid black;
+  margin-top: 15px;
+}
+
+h1{
+  margin-left: 10px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+input{
+  resize: none;
+  width: 99%;
+}
+
+.save {
+  width: 30%;
+  align-self: center;
+  margin: 5px;
+  border: 2px solid black;
+  padding: 10px 20px;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.save:hover {
+  background: black;
+  color: white;
+}
+
+.retour{
+  display: flex;
+  margin: 5px;
+  border: 2px solid black;
+  padding: 10px 20px;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.retour:hover {
+  background: black;
+  color: white;
+}

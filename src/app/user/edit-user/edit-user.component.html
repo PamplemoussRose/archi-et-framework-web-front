@@ -1,0 +1,38 @@
+<section>
+
+  <button class="retour" (click)="goBack()">Retour</button>
+
+  <h1>Modifier l'utilisateur</h1>
+
+  <form class="form-container">
+    <div class="container">
+      <label for="nom">Nom:</label>
+      <input id="nom" [(ngModel)]="user.nom" name="nom"/>
+    </div>
+
+    <div class="container">
+      <label for="prenom">Prenom:</label>
+      <input id="prenom" [(ngModel)]="user.prenom" name="prenom"/>
+    </div>
+
+    <div class="container">
+      <label for="mail">Mail:</label>
+      <input id="mail" [(ngModel)]="user.mail" name="mail"/>
+    </div>
+
+    <div class="container">
+      <label for="username">Username:</label>
+      <input id="username" [(ngModel)]="user.username" name="username"/>
+    </div>
+
+    <div class="basPage">
+
+      <button class="button" (click)="saveChanges()">Enregistrer</button>
+
+      <button class="button" (click)="deleteUser()">Supprimer</button>
+
+    </div>
+
+  </form>
+
+</section>

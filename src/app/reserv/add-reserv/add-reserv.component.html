@@ -1,0 +1,32 @@
+<section>
+
+  <button class="retour" (click)="goBack()">Retour</button>
+
+  <h1>Modifier un terrain</h1>
+
+  <form (ngSubmit)="saveReserv()" class="form-container">
+
+    <div class="container">
+      <label for="user">Utilisateur:</label>
+      <select id="user" [(ngModel)]="reserv.idUtilisateur" name="idUtilisateur" required>
+        <option *ngFor="let user of users" [value]="user.id">{{ user.id + " - " + user.username }}</option>
+      </select>
+    </div>
+
+    <div class="container">
+      <label for="terrain">Terrain:</label>
+      <select id="terrain" [(ngModel)]="reserv.idTerrain" name="idTerrain" required>
+        <option *ngFor="let terrain of terrains" [value]="terrain.id">{{ terrain.id + " - " + terrain.nom }}</option>
+      </select>
+    </div>
+
+    <div class="container">
+      <label for="res">Reservation:</label>
+      <input id="res" [(ngModel)]="reserv.reservation" name="reservation" required/>
+    </div>
+
+    <button type="submit" class="save">Ajouter le terrain</button>
+
+  </form>
+
+</section>

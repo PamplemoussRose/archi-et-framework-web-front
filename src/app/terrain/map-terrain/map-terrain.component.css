@@ -1,0 +1,40 @@
+.container {
+  height: 100%;
+  width: 98%;
+  padding: 10px;
+}
+
+.map{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.map-container {
+  height: 80vh;
+  width: 80vw;
+}
+
+.map-frame {
+  border: 2px solid black;
+  height: 100%;
+}
+
+#map {
+  height: 100%;
+}
+
+.retour{
+  margin: 10px;
+  border: 2px solid black;
+  padding: 10px 20px;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.retour:hover {
+  background: black;
+  color: white;
+}

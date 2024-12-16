@@ -1,0 +1,32 @@
+<button class="retour" (click)="goHome()">Home</button>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+
+  <!-- User Column -->
+  <ng-container matColumnDef="idUtilisateur">
+    <th mat-header-cell *matHeaderCellDef>Utilisateur</th>
+    <td mat-cell *matCellDef="let element">{{element.idUtilisateur}}</td>
+  </ng-container>
+
+  <!-- Terrain Column -->
+  <ng-container matColumnDef="idTerrain">
+    <th mat-header-cell *matHeaderCellDef>Terrain</th>
+    <td mat-cell *matCellDef="let element">{{element.idTerrain}}</td>
+  </ng-container>
+
+  <!-- Reservation Column -->
+  <ng-container matColumnDef="Reservation">
+    <th mat-header-cell *matHeaderCellDef>Reservation</th>
+    <td mat-cell *matCellDef="let element">{{element.reservation}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClicked(row)"></tr>
+
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+
+<div class="container">
+  <button class="bouton" (click)="addTerrain()">Ajouter une reservation</button>
+</div>
