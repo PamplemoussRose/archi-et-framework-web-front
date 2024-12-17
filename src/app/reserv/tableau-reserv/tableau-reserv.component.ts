@@ -6,6 +6,10 @@ import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {ReservationModel} from '../../../models/reservation.model';
 import {ReservationService} from '../../../services/reservation.service';
+import {UtilisateurModel} from '../../../models/utilisateur.model';
+import {TerrainModel} from '../../../models/terrain.model';
+import {UtilisateurService} from '../../../services/utilisateur.service';
+import {TerrainService} from '../../../services/terrain.service';
 
 @Component({
   selector: 'app-tableau-reserv',
@@ -23,11 +27,15 @@ export class TableauReservComponent {
   displayedColumns: string[] = ['idUtilisateur','idTerrain','Reservation'];
 
   dataSource!: MatTableDataSource<ReservationModel>;
+  users!: UtilisateurModel[];
+  terrains!: TerrainModel[];
 
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private readonly resService: ReservationService,
+              private readonly userService: UtilisateurService,
+              private readonly terrainService: TerrainService,
               private readonly router: Router) {}
 
   ngOnInit(): void{
@@ -36,16 +44,34 @@ export class TableauReservComponent {
         this.dataSource.paginator = this.paginator;
       }
     )
+
+    this.userService.get().subscribe(value => {
+      this.users = value;
+    })
+
+    this.terrainService.get().subscribe(value => {
+      this.terrains = value;
+    })
   }
 
   getUser(id: number): string{
-
-      return 'user';
+    let username = " ";
+    for (let user of this.users){
+      if (user.id === id){
+        username = user.username;
+      }
+    }
+    return username;
   }
 
   getTerrain(id: number): string{
-
-    return 'terrain';
+    let nomTerrain = " ";
+    for (let terrain of this.terrains){
+      if (terrain.id === id){
+        nomTerrain = terrain.nom;
+      }
+    }
+    return nomTerrain;
   }
 
   onRowClicked(row: { idUtilisateur: string; idTerrain: string; }): void {
