@@ -1,12 +1,15 @@
-import {Component, ViewChild} from '@angular/core';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import {Router} from '@angular/router';
-import {FormsModule} from '@angular/forms';
-import {CommonModule} from '@angular/common';
-import {UtilisateurService} from '../../../services/utilisateur.service';
-import {UtilisateurModel} from '../../../models/utilisateur.model';
+import { Component, ViewChild, OnInit } from '@angular/core';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { UtilisateurService } from '../../../services/utilisateur.service';
+import { UtilisateurModel } from '../../../models/utilisateur.model';
 
+/**
+ * Composant affichant un tableau de tous les utilisateurs avec pagination.
+ */
 @Component({
   selector: 'app-tableau-user',
   standalone: true,
@@ -14,38 +17,70 @@ import {UtilisateurModel} from '../../../models/utilisateur.model';
     MatTableModule,
     MatPaginatorModule,
     FormsModule,
-    CommonModule],
+    CommonModule
+  ],
   templateUrl: './tableau-user.component.html',
-  styleUrl: './tableau-user.component.css'
+  styleUrls: ['./tableau-user.component.css']
 })
-export class TableauUserComponent {
+export class TableauUserComponent implements OnInit {
 
-  displayedColumns: string[] = ['id','nom','prenom','mail','username'];
+  /**
+   * Colonnes à afficher dans le tableau.
+   */
+  displayedColumns: string[] = ['id', 'nom', 'prenom', 'mail', 'username'];
 
+  /**
+   * Source des données à afficher dans le tableau.
+   */
   dataSource!: MatTableDataSource<UtilisateurModel>;
 
+  /**
+   * Référence à MatPaginator pour la pagination.
+   */
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private readonly userService: UtilisateurService, private readonly router: Router) {}
+  /**
+   * Constructeur pour injecter les services nécessaires.
+   *
+   * @param userService Service pour récupérer les utilisateurs.
+   * @param router Service de navigation Angular.
+   */
+  constructor(
+    private readonly userService: UtilisateurService,
+    private readonly router: Router
+  ) {}
 
-  ngOnInit(): void{
+  /**
+   * Récupère les utilisateurs depuis le service et initialise la pagination.
+   */
+  ngOnInit(): void {
     this.userService.get().subscribe(value => {
-        this.dataSource = new MatTableDataSource<UtilisateurModel>(value);
-        this.dataSource.paginator = this.paginator;
-      }
-    )
+      // Initialise le tableau avec les données récupérées
+      this.dataSource = new MatTableDataSource<UtilisateurModel>(value);
+      // Associe le paginator au tableau
+      this.dataSource.paginator = this.paginator;
+    });
   }
 
+  /**
+   * Gère le clic sur une ligne du tableau et redirige vers l'édition de l'utilisateur.
+   * @param row L'utilisateur sélectionné.
+   */
   onRowClicked(row: UtilisateurModel): void {
     this.router.navigate(['/edit-user', row.id]);
   }
 
-  addTerrain(): void {
+  /**
+   * Permet d'ajouter un nouvel utilisateur en redirigeant vers la page d'ajout.
+   */
+  addUser(): void {
     this.router.navigate(['/add-user']);
   }
 
+  /**
+   * Redirige l'utilisateur vers la page d'accueil.
+   */
   goHome(): void {
     this.router.navigate(['']);
   }
-
 }
