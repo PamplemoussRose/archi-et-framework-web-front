@@ -125,7 +125,7 @@ export class TableauReservComponent {
   /**
    * Redirige vers la page pour ajouter une nouvelle réservation.
    */
-  addTerrain(): void {
+  addReserve(): void {
     this.router.navigate(['/add-reserv']);
   }
 
